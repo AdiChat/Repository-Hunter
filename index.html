@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <title>Repository Hunter</title>
+  <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+  <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+</head>
+
+<body>
+  <div id="head">
+        <h1>Repository Hunter</h1>
+        <p>Enter a Github username and slap the button to display profile information.</p>    
+        <input type="text" name="username" id="username" placeholder="{  / Github username / }">    
+        <a href="#" id="submit">Get Information</a>    
+        <div id="data" class="clearfix">
+        </div>
+  </div>
+<script type="text/javascript">
+  $(function(){
+    $('#submit').on('click', function(e){
+      e.preventDefault();
+      $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');    
+      var username = $('#username').val();
+      var link1   = 'https://api.github.com/users/'+username;
+      var link2  = 'https://api.github.com/users/'+username+'/repos';    
+      requestJSON(link1, function(json) {
+        if(json.message == "Not Found" || username == '') {
+          $('#data').html("<h2>The User seems to be hiding in a nutshell</h2>");
+        }      
+        else {
+          var fullname   = json.name;
+          var username   = json.login;
+          var email = json.email;
+          var profile = json.html_url;
+          var company = json.company;
+          var id = json.id;
+          var face     = json.avatar_url;          
+          var location   = json.location;
+          var follower = json.followers;
+          var following = json.following;
+          var repo     = json.public_repos;
+          var create_time = json.created_at;
+          var update_time = json.updated_at;
+          var hire = json.hireable;
+          var bio = json.bio;
+          var type = json.type;
+          var blog = json.blog;
+          var location = json.location;
+          
+          if(fullname == undefined) { fullname = username; }
+          
+          var info = '<div class="content"><div class="avi"><a href="'+profile+'" target="_blank"><img src="'+face+'" width="80" height="80" alt="'+username+'"></a></div>';
+          info = info + '<h2>'+fullname+' <span class="smallname"> , User : @<a href="'+profile+'" target="_blank">'+username+'</a></span></h2><br>';
+          
+          info = info + '<p class="cont">Type : '+type+'<br>Repository: '+repo+'<br>Email ID : '+email+'<br>Blog : '+blog+'<br>Bio : '+bio+'<br>Hireable : '+hire+'</p>'+ '<p class = "cont1">Location : '+location+'<br>Followers: '+follower+'<br>Following: '+following+'<br>Created at : '+create_time+'<br>Updated time : '+update_time+'<br>Company : '+company+'<br>ID : '+id+'<br></p></div>';
+         info = info + '<div class="repolist clearfix">';
+          var repositories;
+          $.getJSON(link2, function(json){
+            repositories = json;   
+            outputPageContent();                
+          });          
+          
+          function outputPageContent() {
+            if(repositories.length == 0) { info = info + '<p>No repos!</p></div>'; }
+            else {
+              info = info + '<p><strong>Repository List:</strong></p> <p class = "cont2"><ul class="repolist">';
+              $.each(repositories, function(index) {
+                info = info + '<li><a href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a></li>';
+              });
+              info = info + '</ul></p></div>'; 
+            }
+            $('#data').html(info);
+          } // end outputPageContent()
+        } // end else statement
+      }); // end requestJSON Ajax call
+    }); // end click event handler  
+    function requestJSON(url, callback) {
+      $.ajax({
+        url: url,
+        complete: function(xhr) {
+          callback.call(null, xhr.responseJSON);
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

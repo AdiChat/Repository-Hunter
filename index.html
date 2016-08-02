@@ -28,6 +28,7 @@
 
     $('#submit').on('click', function(e){
       e.preventDefault();
+      $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>'); 
       var username = $username.val();
       var link1   = 'https://api.github.com/users/'+username;
       var link2  = 'https://api.github.com/users/'+username+'/repos';    

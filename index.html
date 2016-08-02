@@ -4,30 +4,36 @@
   <title>Repository Hunter</title>
   <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
   <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
-  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <base href="./">
+  <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 </head>
 <!-- to be updated soon -->
 <body>
   <div id="head">
         <h1>Repository Hunter</h1>
-        <p>Enter a Github username and slap the button to display profile information.</p>    
-        <input type="text" name="username" id="username" placeholder="{  / Github username / }">    
-        <a href="#" id="submit">Get Information</a>    
-        <div id="data" class="clearfix">
-        </div>
+        <form>
+          <label for="username">
+            Enter a Github username and slap the button to display profile information.
+          </label>    
+          <input type="text" name="username" id="username" placeholder="{  / Github username / }">    
+          <button type="submit" id="submit">Get Information</button>    
+        </form>
+        <div id="data" class="clearfix"></div>
   </div>
 <script type="text/javascript">
   $(function(){
+    var $username = $('#username');
+    var $data = $('#data');
+
     $('#submit').on('click', function(e){
       e.preventDefault();
-      $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');    
-      var username = $('#username').val();
+      var username = $username.val();
       var link1   = 'https://api.github.com/users/'+username;
       var link2  = 'https://api.github.com/users/'+username+'/repos';    
       requestJSON(link1, function(json) {
-        if(json.message == "Not Found" || username == '') {
-          $('#data').html("<h2>The User seems to be hiding in a nutshell</h2>");
+        if(json.message === "Not Found" || username == '') {
+          $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
         }      
         else {
           var fullname   = json.name;
@@ -49,7 +55,9 @@
           var blog = json.blog;
           var location = json.location;
           
-          if(fullname == undefined) { fullname = username; }
+          if( typeof fullname === 'undefined' ) { 
+            fullname = username; 
+          }
           
           var info = '<div class="content"><div class="avi"><a href="'+profile+'" target="_blank"><img src="'+face+'" width="80" height="80" alt="'+username+'"></a></div>';
           info = info + '<h2>'+fullname+' <span class="smallname"> , User : @<a href="'+profile+'" target="_blank">'+username+'</a></span></h2><br>';
@@ -71,7 +79,7 @@
               });
               info = info + '</ul></p></div>'; 
             }
-            $('#data').html(info);
+            $data.html(info);
           } // end outputPageContent()
         } // end else statement
       }); // end requestJSON Ajax call

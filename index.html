@@ -4,7 +4,8 @@
   <title>Repository Hunter</title>
   <link rel="shortcut icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
   <link rel="icon" href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico">
-  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <base href="./">
+  <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 </head>
 <!-- to be updated soon -->
@@ -19,14 +20,15 @@
   </div>
 <script type="text/javascript">
   $(function(){
+    $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');    
+    var $username = $('#username');
     $('#submit').on('click', function(e){
       e.preventDefault();
-      $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');    
-      var username = $('#username').val();
+      var username = $username.val();
       var link1   = 'https://api.github.com/users/'+username;
       var link2  = 'https://api.github.com/users/'+username+'/repos';    
       requestJSON(link1, function(json) {
-        if(json.message == "Not Found" || username == '') {
+        if(json.message === "Not Found" || username == '') {
           $('#data').html("<h2>The User seems to be hiding in a nutshell</h2>");
         }      
         else {
@@ -49,7 +51,9 @@
           var blog = json.blog;
           var location = json.location;
           
-          if(fullname == undefined) { fullname = username; }
+          if( typeof fullname === 'undefined' ) { 
+            fullname = username; 
+          }
           
           var info = '<div class="content"><div class="avi"><a href="'+profile+'" target="_blank"><img src="'+face+'" width="80" height="80" alt="'+username+'"></a></div>';
           info = info + '<h2>'+fullname+' <span class="smallname"> , User : @<a href="'+profile+'" target="_blank">'+username+'</a></span></h2><br>';

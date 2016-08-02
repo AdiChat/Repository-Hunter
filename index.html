@@ -12,16 +12,20 @@
 <body>
   <div id="head">
         <h1>Repository Hunter</h1>
-        <p>Enter a Github username and slap the button to display profile information.</p>    
-        <input type="text" name="username" id="username" placeholder="{  / Github username / }">    
-        <a href="#" id="submit">Get Information</a>    
-        <div id="data" class="clearfix">
-        </div>
+        <form>
+          <label for="username">
+            Enter a Github username and slap the button to display profile information.
+          </label>    
+          <input type="text" name="username" id="username" placeholder="{  / Github username / }">    
+          <button type="submit" id="submit">Get Information</button>    
+        </form>
+        <div id="data" class="clearfix"></div>
   </div>
 <script type="text/javascript">
   $(function(){
-    $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');    
     var $username = $('#username');
+    var $data = $('#data');
+
     $('#submit').on('click', function(e){
       e.preventDefault();
       var username = $username.val();
@@ -29,7 +33,7 @@
       var link2  = 'https://api.github.com/users/'+username+'/repos';    
       requestJSON(link1, function(json) {
         if(json.message === "Not Found" || username == '') {
-          $('#data').html("<h2>The User seems to be hiding in a nutshell</h2>");
+          $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
         }      
         else {
           var fullname   = json.name;
@@ -75,7 +79,7 @@
               });
               info = info + '</ul></p></div>'; 
             }
-            $('#data').html(info);
+            $data.html(info);
           } // end outputPageContent()
         } // end else statement
       }); // end requestJSON Ajax call

@@ -32,9 +32,9 @@
       e.preventDefault();
       $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>'); 
       var username = $username.val();
-      var link1   = 'https://api.github.com/users/'+username+'?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc';
-      var link2  = 'https://api.github.com/users/'+username+'/repos?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc'; 
-      var link3 = 'https://api.github.com/repos/adichat/share/languages?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc';   
+      var link1   = 'https://api.github.com/users/'+username+'';
+      var link2  = 'https://api.github.com/users/'+username+'/repos'; 
+      var link3 = 'https://api.github.com/repos/adichat/share/languages';   
       requestJSON(link1, function(json) {
         if(json.message === "Not Found" || username == '') {
           $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
@@ -85,7 +85,7 @@
               $.each(repositories, function(index) {
                 info = info + '<li><a href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a></li>';
                //repol.push(repositories[index].name);
-               link3 = 'https://api.github.com/repos/'+username+'/'+repositories[index].name+'/languages?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc';
+               link3 = 'https://api.github.com/repos/'+username+'/'+repositories[index].name+'/languages';
                $.getJSON(link3, function(json){
               dd = json;
               repol[0] = repol[0] + (dd.C != null ? 1 : 0);

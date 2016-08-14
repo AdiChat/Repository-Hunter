@@ -4,6 +4,8 @@
 <!-- to be updated soon -->
 <body>
   <div id="head">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
         <h1>Repository Hunter</h1>
         <form>
@@ -14,18 +16,25 @@
           <button type="submit" id="submit">Get Information</button>    
         </form>
         <div id="data" class="clearfix"></div>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+
   </div>
+  
+
+
 <script type="text/javascript">
   $(function(){
     var $username = $('#username');
     var $data = $('#data');
+    var repol = [0,0,0,0,0,0,0];
 
-    $('#submit').on('click', function(e){
+      $('#submit').on('click', function(e){
       e.preventDefault();
       $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>'); 
       var username = $username.val();
-      var link1   = 'https://api.github.com/users/'+username;
-      var link2  = 'https://api.github.com/users/'+username+'/repos';    
+      var link1   = 'https://api.github.com/users/'+username+'?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc';
+      var link2  = 'https://api.github.com/users/'+username+'/repos?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc'; 
+      var link3 = 'https://api.github.com/repos/adichat/share/languages?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc';   
       requestJSON(link1, function(json) {
         if(json.message === "Not Found" || username == '') {
           $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
@@ -66,19 +75,82 @@
           });          
           
           function outputPageContent() {
+
+            var langlist = [];
+            var dd;
+
             if(repositories.length == 0) { info = info + '<p>No repos!</p></div>'; }
             else {
               info = info + '<p><strong>Repository List:</strong></p> <p class = "cont2"><ul class="repolist">';
               $.each(repositories, function(index) {
                 info = info + '<li><a href="'+repositories[index].html_url+'" target="_blank">'+repositories[index].name + '</a></li>';
+               //repol.push(repositories[index].name);
+               link3 = 'https://api.github.com/repos/'+username+'/'+repositories[index].name+'/languages?access_token=0eee2e5bd8bafd4ad990a1cc6e5a6c5951da85dc';
+               $.getJSON(link3, function(json){
+              dd = json;
+              repol[0] = repol[0] + (dd.C != null ? 1 : 0);
+              repol[1] = repol[1] + (dd.Ruby != null ? 1 : 0);
+              repol[2] = repol[2] + (dd.CSS != null? 1 : 0);
+              repol[3] = repol[3] + (dd.JavaScript != null? 1 : 0);
+              repol[4] = repol[4] + (dd.HTML != null? 1 : 0);
+              repol[5] = repol[5] + (dd.Java != null? 1 : 0);
+              repol[6] = repol[6] + (dd.Python != null? 1 : 0);
+            });
+
               });
               info = info + '</ul></p></div>'; 
             }
-            $data.html(info);
+            
+            $.getJSON(link3, function(json){
+              dd = json;
+              langlist[1] = dd.Ruby;
+
+              $data.html(info);
+
+            var lang_name = ["C", "Ruby", "CSS", "JavaScript", "HTML", "Java", "Python"];
+
+            var gg = [];
+
+            gg.push(['Language', 'Dedication']);
+
+            for( var i=0; i < repol.length; i++)
+            {
+                if(repol[i]!=0)
+                  gg.push([lang_name[i], repol[i]]);
+            }
+
+            google.charts.load("current", {packages:["corechart"]});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable(gg);
+
+        var options = {
+          title: 'Language usage',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+          });
+            
+            //repol.push([0, 20]);
+
+            
+
           } // end outputPageContent()
         } // end else statement
+
+        
+
       }); // end requestJSON Ajax call
+
+    
+
+  });
+
     }); // end click event handler  
+
     function requestJSON(url, callback) {
       $.ajax({
         url: url,
@@ -87,43 +159,11 @@
         }
       });
     }
-  });
+
+    
+
+
 </script>
 <a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">Fork me on GitHub</a>
-<style>
-#forkMe {
-    top: 3em;
-    right: -6em;
-    color: #fff;
-    display: block;
-    position: fixed;
-    text-align: center;
-    text-decoration: none;
-    letter-spacing: .06em;
-    background-color: #A00;
-    padding: 0.5em 5em 0.4em 5em;
-    text-shadow: 0 0 0.75em #444;
-    box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
-    transform: rotate(45deg) scale(0.75,1);
-    font: bold 16px/1.2em Arial, Sans-Serif;
-    -webkit-text-shadow: 0 0 0.75em #444;
-    -webkit-box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
-    -webkit-transform: rotate(45deg) scale(0.75,1);
-    z-index:10;
-}
-#forkMe:before {
-    content: '';
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    margin: -0.3em -5em;
-    transform: scale(0.7);
-    -webkit-transform: scale(0.7);
-    border: 2px rgba(255,255,255,0.7) dashed;
-}
-#forkMe:hover {opacity: 0.9;}
-</style>
 </body>
 </html>

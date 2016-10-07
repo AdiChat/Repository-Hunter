@@ -7,4 +7,4 @@ The user has to enter the username of a GitHub account and this application will
 Use the app [here](http://repository-hunter.herokuapp.com/)<br>
 This application comes in handy when the user is concerned about the actual information and particular repositories.<br>
 This is a preview of the application :<br>
-![alt text](Preview/pre1.gif " The view of the application")<br>
+![alt text](Preview/repository-hunter.gif " The view of the application")<br>

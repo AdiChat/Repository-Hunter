@@ -20,8 +20,8 @@ The application provides 3 kinds of services:
    * An issue over a project that won China 2014 State Science and Technology Prizes has over **1426 comments** with over **997 participants**. <br>
    and observations continue forever. ▶️ 
 
-* The second one is **_Embeddable GitHub Contribution graph_**. This allows anyone to embed their contribution graph in any web application. Get your graph today ! The best part is the even if your graph has been removed as happened with _Ciro Santilli_ several years ago, still you will be able to **see your long lost graph** and save it for warm memories. Here is my contribution graph: <br>
-![alt text](http://repository-hunter.herokuapp.com/contribution/adichat.svg " The view of the contribution graph")<br>
+* The second one is **_Embeddable GitHub Contribution graph_**. This allows anyone to embed their contribution graph in any web application. Get your graph today ! The best part is the even if your graph has been removed as happened with _Ciro Santilli_ several years ago, still you will be able to **see your long lost graph** and save it for warm memories. Here is my saved contribution graph: <br>
+![alt text](https://github.com/AdiChat/Repository-Hunter/blob/master/Preview/adichat.jpg " The view of the contribution graph")<br>
 Check out your graph and embed it today : **[here](http://repository-hunter.herokuapp.com/contribution)** 
 
 * The third one is a user profile presentation service where the public profile details such as some users following the concerned user, some users being followed by the concerned user, the language usage distribution and some public information is displayed in an exciting way. Check your profile [today](http://repository-hunter.herokuapp.com/). 

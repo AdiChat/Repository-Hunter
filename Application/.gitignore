@@ -12,6 +12,7 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+/config/secrets.yml
 /log/*
 !/log/.keep
 /tmp

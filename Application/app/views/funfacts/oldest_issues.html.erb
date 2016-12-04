@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+
+<!-- to be updated soon -->
+<body>
+  <div id="head">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+        <form>
+          <h1>
+            Oldest unresolved issues on GitHub. Let us resolve them now. 🎉 
+          </h1>    
+        </form>
+        <div id="data" class="clearfix"></div>
+  </div>
+  
+
+
+<script type="text/javascript">
+  $(function(){
+    var $username = "adichat";//$('#username');
+    var $data = $('#data');
+    var repol = [0,0,0,0,0,0,0];
+
+      //$('#submit').on('click', function(e){
+      //e.preventDefault();
+      $('#data').html('<div id="loader"><img src="<%= asset_path( 'loader.gif' ) %>" alt="loading..."></div>'); 
+      var username = "adichat";//$username.val();
+      var link1   = 'https://api.github.com/search/issues?q=label:bug+state:open&sort=created&order=asc&page=1&per_page=100&access_token=9609a0c5e8aa22152f9c1e251034a8f679be20e7';
+
+      requestJSON(link1, function(json) {
+        if(json.message === "Not Found" || username == '') {
+          $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
+        }      
+        else {
+                    
+         var info1 = '<div style="display: inline" class="content">';
+                  
+          $.getJSON(link1, function(json){
+            users_follow = json.items;   
+            outputPageContent1();                
+          });
+         
+          function outputPageContent1() {
+
+            if(users_follow.length == 0) { info1 = info1 + '</div>'; }
+            else {
+              $.each(users_follow, function(index) {
+                info1 = info1 + '<div style="display: inline" class="avi"><a href="https://github.com/'+(users_follow[index].url).substr(29)+'" target="_blank"><h3 style="font-size:20px">'+users_follow[index].title+'</h3></a><br><p>Unresolved since <strong>'+users_follow[index].created_at+'</strong></p><br><p>'+users_follow[index].body+'</p><br><p>This issue was opened by <a href="https://github.com/'+(users_follow[index].user.url).substr(29)+'">'+users_follow[index].user.login+'</a></p></div>';               
+               
+              });
+              info1 = info1 + '</div>'; 
+            }
+            $data.html(info1);         
+          } // end outputPageContent1()
+
+          
+
+       } // end else statement
+
+        
+
+      }); // end requestJSON Ajax call
+
+    
+
+  //});
+
+    }); // end click event handler  
+
+    function requestJSON(url, callback) {
+      $.ajax({
+        url: url,
+        complete: function(xhr) {
+          callback.call(null, xhr.responseJSON);
+        }
+      });
+    }
+
+    
+
+
+</script>
+<a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">Fork me on GitHub</a>
+<p id="jj"><a href="https://github.com/AdiChat/Repository-Hunter/wiki/FAQ"><i class="fa fa-question-circle" aria-hidden="true"></i> Need Assistance? View FAQ</a></p>
+<p id="jj1"><a href="https://github.com/AdiChat/Repository-Hunter/issues/new"><i class="fa fa-question-circle" aria-hidden="true"></i> Found something suspicious. Open an issue. </a></p>
+<style>
+#forkMe {
+    top: 3em;
+    right: -6em;
+    color: #fff;
+    display: block;
+    position: fixed;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: .06em;
+    background-color: #A00;
+    padding: 0.5em 5em 0.4em 5em;
+    text-shadow: 0 0 0.75em #444;
+    box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
+    transform: rotate(45deg) scale(0.75,1);
+    font: bold 16px/1.2em Arial, Sans-Serif;
+    -webkit-text-shadow: 0 0 0.75em #444;
+    -webkit-box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
+    -webkit-transform: rotate(45deg) scale(0.75,1);
+    z-index:10;
+}
+#forkMe:before {
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin: -0.3em -5em;
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    border: 2px rgba(255,255,255,0.7) dashed;
+}
+#forkMe:hover {opacity: 0.9;}
+#jj {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0;
+  padding: 5px;
+  background-color: grey;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover { text-decoration: none; }
+  }
+}
+#jj1 {
+  position: fixed;
+  bottom: 0;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0;
+  padding: 5px;
+  background-color: grey;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover { text-decoration: none; }
+  }
+}
+</style>
+</body>
+</html>

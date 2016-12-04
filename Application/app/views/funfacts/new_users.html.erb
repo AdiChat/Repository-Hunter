@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+  <div id="head">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+        <form>
+          <h1>
+            Few new members in our family. Give them a suprise. 🎉 
+          </h1>    
+        </form>
+        <div id="data" class="clearfix"></div>
+  </div>
+  
+
+
+<script type="text/javascript">
+  $(function(){
+    var $username = "adichat";//$('#username');
+    var $data = $('#data');
+    var repol = [0,0,0,0,0,0,0];
+
+      //$('#submit').on('click', function(e){
+      //e.preventDefault();
+      $('#data').html('<div id="loader"><img src="<%= asset_path( 'loader.gif' ) %>" alt="loading..."></div>'); 
+      var username = "adichat";//$username.val();
+      var link1   = 'https://api.github.com/search/users?q=type:user&sort=joined&order=desc&page=1&per_page=100';
+
+      var link2   = 'https://api.github.com/search/users?q=type:user&sort=joined&order=desc&page=2&per_page=100';
+
+      var link3   = 'https://api.github.com/search/users?q=type:user&sort=joined&order=desc&page=3&per_page=100';
+
+      var link4   = 'https://api.github.com/search/users?q=type:user&sort=joined&order=desc&page=4&per_page=100';
+
+      var info_f = "";
+      
+      requestJSON(link1, function(json) {
+        if(json.message === "Not Found" || username == '') {
+          $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
+        }      
+        else {
+                  
+          $.getJSON(link1, function(json){
+            users_follow = json.items;   
+            outputPageContent1();                
+          });
+          $.getJSON(link2, function(json){
+            users_follow = json.items;   
+            outputPageContent1();                
+          });
+          $.getJSON(link3, function(json){
+            users_follow = json.items;   
+            outputPageContent1();                
+          });
+          $.getJSON(link4, function(json){
+            users_follow = json.items;   
+            outputPageContent1();                
+          });
+
+          function outputPageContent1() {
+
+            var info1 = '<div>';
+            if(users_follow.length == 0) { info1 = info1 + '</div>'; }
+            else {
+              $.each(users_follow, function(index) 
+              {
+                
+                info1 = info1 + '<a style="display: inline" href="https://github.com/'+users_follow[index].login+'" target="_blank"><img src="'+users_follow[index].avatar_url+'" width="80" height="80" alt="'+username+'"></a>';          
+              });
+              info1 = info1 + '</div>'; 
+              info_f = info_f + info1;
+            }
+            $data.html(info_f);         
+          } // end outputPageContent1()
+
+       } // end else statement
+
+        
+
+      }); // end requestJSON Ajax call
+
+    
+
+  //});
+
+    }); // end click event handler  
+
+    function requestJSON(url, callback) {
+      $.ajax({
+        url: url,
+        complete: function(xhr) {
+          callback.call(null, xhr.responseJSON);
+        }
+      });
+    }
+
+    
+
+
+</script>
+<a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">Fork me on GitHub</a>
+<p id="jj"><a href="https://github.com/AdiChat/Repository-Hunter/wiki/FAQ"><i class="fa fa-question-circle" aria-hidden="true"></i> Need Assistance? View FAQ</a></p>
+<p id="jj1"><a href="https://github.com/AdiChat/Repository-Hunter/issues/new"><i class="fa fa-question-circle" aria-hidden="true"></i> Found something suspicious. Open an issue. </a></p>
+</body>
+</html>

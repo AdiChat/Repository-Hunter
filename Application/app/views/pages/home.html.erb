@@ -1,25 +1,248 @@
 <!doctype html>
 <html>
 
-<!-- to be updated soon -->
 <body>
+
   <div id="head">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+      <link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 
         <h1>Repository Hunter</h1>
         <form>
           <p>
             Enter a Github username and slap the button to display profile information.
           </p>    
-          <input type="text" name="username" id="username" placeholder="{  / Github username / }">    
+          <input type="text" name="username" id="username" placeholder="Enter a Github username and slap the button to display profile information.">    
           <button type="submit" id="submit">Get Information</button>    
         </form>
-        <div id="data" class="clearfix"></div>
+
+        <div id="data" class="clearfix">
+            <div class="container">
+      <div class="row">
+        
+        <div class="col-md-6" >
+          <div class="well" style="padding-left: 1em; box-shadow: 2px 2px 20px gray;" id="logo">
+            <h3>Introducing GitHub Contribution graph</h3>
+            <h4>Embed your GitHub contribution graph anywhere</h4>
+            <p>Now, you can embed your Github Contribution graph anywhere and even, save it for warm memories. Luckily, even if your graph has been removed as with <strong>Ciro Santilli(@cirosantilli)</strong>, still you can find your long lost graph on Repository Hunter as we ❤️ all.</p>
+            <img src="/contribution/adichat.svg" alt="Github contribution" />
+            <br>
+            <div class="spacer"></div><div class="spacer"></div>
+            <a href="/contribution"><span></span></a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+        </div>
     <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 
   </div>
   
+<style>
+
+#logo {
+  position: relative;
+}
+
+#logo a span { 
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+
+  /* edit: added z-index */
+  z-index: 1;
+}
+
+#logo:hover {
+  box-shadow: 20px 20px 20px black;
+}
+
+#logo:active {
+  top: +2px;
+}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.header{position:fixed;z-index: 3;}
+
+html { overflow-y: scroll; }
+body {
+  background: white;
+  font-family: Arial;
+  font-size: 60%;
+  line-height: 1;
+  color: #616161;
+  padding: 5px 0;
+}
+input{ 
+  box-sizing: border-box;
+  outline: none; 
+}
+img { border: 0; max-width: 100%; }
+
+h1 { 
+  font-family: Arial;
+  font-size: 4.0em;
+  color: brown;  
+  line-height: 1.6em;
+  margin-bottom: 10px;
+}
+h3 { 
+  font-family: Arial;
+  font-size: 4.0em;
+  color: brown;  
+  line-height: 1.6em;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 1.4em;
+  line-height: 1.55em;
+  margin-bottom: 12px;
+}
+.cont {
+  font-weight: bold;
+  padding: 6px 9px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border: 1px solid #356492;
+  border-radius: 3px;
+  color: #fff;
+  background-color: LightGreen;
+  background-image: linear-gradient(top, #5597d8, #3673af);
+  font-size: 1.4em;
+  line-height: 1.55em;
+  margin-bottom: 12px;
+}
+.cont1 {
+  font-weight: bold;
+  padding: 6px 9px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border: 1px solid #356492;
+  border-radius: 3px;
+  color: #fff;
+  background-color: Orange;
+  background-image: linear-gradient(top, #5597d8, #3673af);
+  font-size: 1.4em;
+  line-height: 1.55em;
+  margin-bottom: 12px;
+}
+
+a { 
+  color: #8eadd2;
+}
+a:hover {
+  color: #6e91b9;
+}
+
+#head {
+  display: block;
+  width: 800px;
+  margin-left:20px;
+  background: white;
+  padding: 0px 0px 0px 300px;
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.4);
+  border-radius: 5px;
+}
+
+#data {
+  display: block;
+  padding: 20px 0;
+}
+
+#loader {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.repolist {
+  display: block;
+  clear: both;
+  width: 100%;
+}
+.repolist ul {
+  font-size: 1.2em;
+}
+.repolist ul li {
+  display: block;
+}
+.repolist ul li a {
+  font-weight: bold;
+  padding: 6px 9px;
+  display: block;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border: 1px solid #356492;
+  border-radius: 3px;
+  color: #fff;
+  background-color: olive;
+  background-image: linear-gradient(top, #5597d8, #3673af);
+}
+.repolist ul li a:hover {
+  background-color: red;
+  background-image: linear-gradient(top, #4b87c2, #396895);
+}
+
+#username {
+  display: block;
+  padding: 5px 8px;
+  font-size: 1.4em;
+  color: #666;
+  width: 550px;
+  margin-bottom: 15px;
+}
+#submit {
+  display: inline-block;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  color: green;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  background-color: #eaeaea;
+  background-image: linear-gradient(#fafafa, #eaeaea);
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  border-bottom-color: #c5c5c5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+#submit:hover {
+  background-color: #dadada;
+  background-image: linear-gradient(#eaeaea, #dadada);
+  border-color: #ccc #ccc #b5b5b5;
+}
+#submit:active {
+  background-color:#dadada;
+  background-image: none;
+  border-color: #b5b5b5;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.25);
+}
+.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+.clearfix { display: inline-block; }
+ 
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+</style>
 
 
 <script type="text/javascript">
@@ -30,11 +253,14 @@
 
       $('#submit').on('click', function(e){
       e.preventDefault();
-      $('#data').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>'); 
+      $('#data').html('<div id="loader"><img src="<%= asset_path( 'loader.gif' ) %>" alt="loading..."></div>'); 
       var username = $username.val();
       var link1   = 'https://api.github.com/users/'+username+'';
       var link2  = 'https://api.github.com/users/'+username+'/repos'; 
       var link3 = 'https://api.github.com/repos/adichat/share/languages';   
+      var link4 = 'https://api.github.com/users/'+username+'/followers';
+      var link5 = 'https://api.github.com/users/'+username+'/following';
+
       requestJSON(link1, function(json) {
         if(json.message === "Not Found" || username == '') {
           $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
@@ -64,15 +290,76 @@
           }
           
           var info = '<div class="content"><div class="avi"><a href="'+profile+'" target="_blank"><img src="'+face+'" width="80" height="80" alt="'+username+'"></a></div>';
-          info = info + '<h2>'+fullname+' <span class="smallname"> , User : @<a href="'+profile+'" target="_blank">'+username+'</a></span></h2><br>';
+
+          date1 = new Date()
+          date2 = new Date(create_time);
+          var diff = Math.floor(date1.getTime() - date2.getTime());
+          var day = 1000 * 60 * 60 * 24;
+
+          var days = Math.floor(diff/day);
+          var months = Math.floor(days/31);
+          var years = Math.floor(months/12);
+
+          var message = "";
+          message += years + " years "
+          message += months + " months "
+          message += days + " days ago "
+
+          var pp = username + ' is a GitHub ' + type + ' with '+repo + ' repositories. You may contact him/ her at : '+email+'. He/ She has '+follower+' followers and follows '+following+' GitHub users. He/ She was the '+id+'th GitHub user and had joined our community '+message+'. NEED TO CHANGE DATE. Enjoy !' ;
+
+          var info1 = '<div style="display: inline" class="content">';
+
+          var info2 = '<div style="display: inline" class="content">';
+
+
+                            info = info + '<br><img src="/contribution/'+username+'.svg" alt="Github contribution" /><br>'
           
-          info = info + '<p class="cont">Type : '+type+'<br>Repository: '+repo+'<br>Email ID : '+email+'<br>Blog : '+blog+'<br>Bio : '+bio+'<br>Hireable : '+hire+'</p>'+ '<p class = "cont1">Location : '+location+'<br>Followers: '+follower+'<br>Following: '+following+'<br>Created at : '+create_time+'<br>Updated time : '+update_time+'<br>Company : '+company+'<br>ID : '+id+'<br></p></div>';
+          info = info + '<p class="cont">Type : '+type+'<br>Repository: '+repo+'<br>Email ID : '+email+'<br>Blog : '+blog+'<br>Bio : '+bio+'<br>Hireable : '+hire+'</p>'+ '<p class = "cont1">Location : <a href="http://maps.google.com/?q='+location+'">'+location+'</a><br>Followers: '+follower+'<br>Following: '+following+'<br>Created at : '+create_time+'<br>Updated time : '+update_time+'<br>Company : '+company+'<br>ID : '+id+'<br></p></div>';
          info = info + '<div class="repolist clearfix">';
           var repositories;
           $.getJSON(link2, function(json){
             repositories = json;   
             outputPageContent();                
+          });  
+
+          $.getJSON(link4, function(json){
+            users_follow = json;   
+            outputPageContent1();                
+          });
+
+          $.getJSON(link5, function(json){
+            users_following = json;   
+            outputPageContent2();                
           });          
+
+          function outputPageContent1() {
+
+            if(users_follow.length == 0) { info1 = info1 + '<p>No users!</p></div>'; }
+            else {
+              info1 = info1 + "<p><strong>A couple of users who follow "+username+":</strong></p> <p class = 'cont2'><ul class='repolist'>";
+              $.each(users_follow, function(index) {
+                info1 = info1 + '<div style="display: inline" class="avi"><a href="https://github.com/'+users_follow[index].login+'" target="_blank"><img src="'+users_follow[index].avatar_url+'" width="80" height="80" alt="'+username+'"></a></div>';               
+               
+              });
+              info1 = info1 + '</div>'; 
+            }
+            $data.html(info+info1+info2);         
+          } // end outputPageContent1()
+
+          function outputPageContent2() {
+
+            if(users_following.length == 0) { info2 = info2 + '<p>No users!</p></div>'; }
+            else {
+              info2 = info2 + "<p><strong>A couple of users whom "+username+" follows:</strong></p> <p class = 'cont2'><ul class='repolist'>";
+              $.each(users_follow, function(index) {
+                info2 = info2 + '<div style="display: inline" class="avi"><a href="https://github.com/'+users_following[index].login+'" target="_blank"><img src="'+users_following[index].avatar_url+'" width="80" height="80" alt="'+username+'"></a></div>';
+                               
+              });
+              info2 = info2 + '</div>'; 
+            }
+            $data.html(info+info1+info2);         
+          } // end outputPageContent1()
+
           
           function outputPageContent() {
 
@@ -87,15 +374,15 @@
                //repol.push(repositories[index].name);
                link3 = 'https://api.github.com/repos/'+username+'/'+repositories[index].name+'/languages';
                $.getJSON(link3, function(json){
-              dd = json;
-              repol[0] = repol[0] + (dd.C != null ? 1 : 0);
-              repol[1] = repol[1] + (dd.Ruby != null ? 1 : 0);
-              repol[2] = repol[2] + (dd.CSS != null? 1 : 0);
-              repol[3] = repol[3] + (dd.JavaScript != null? 1 : 0);
-              repol[4] = repol[4] + (dd.HTML != null? 1 : 0);
-              repol[5] = repol[5] + (dd.Java != null? 1 : 0);
-              repol[6] = repol[6] + (dd.Python != null? 1 : 0);
-            });
+                  dd = json;
+                  repol[0] = repol[0] + (dd.C != null ? 1 : 0);
+                  repol[1] = repol[1] + (dd.Ruby != null ? 1 : 0);
+                  repol[2] = repol[2] + (dd.CSS != null? 1 : 0);
+                  repol[3] = repol[3] + (dd.JavaScript != null? 1 : 0);
+                  repol[4] = repol[4] + (dd.HTML != null? 1 : 0);
+                  repol[5] = repol[5] + (dd.Java != null? 1 : 0);
+                  repol[6] = repol[6] + (dd.Python != null? 1 : 0);
+                });
 
               });
               info = info + '</ul></p></div>'; 
@@ -105,40 +392,42 @@
               dd = json;
               langlist[1] = dd.Ruby;
 
-              $data.html(info);
+              $data.html(info+info1+info2);
 
-            var lang_name = ["C", "Ruby", "CSS", "JavaScript", "HTML", "Java", "Python"];
+              var lang_name = ["C", "Ruby", "CSS", "JavaScript", "HTML", "Java", "Python"];
 
-            var gg = [];
+              var gg = [];
 
-            gg.push(['Language', 'Dedication']);
+              gg.push(['Language', 'Dedication']);
 
-            for( var i=0; i < repol.length; i++)
-            {
-                if(repol[i]!=0)
-                  gg.push([lang_name[i], repol[i]]);
-            }
+              for( var i=0; i < repol.length; i++)
+              {
+                  if(repol[i]!=0)
+                    gg.push([lang_name[i], repol[i]]);
+              }
 
-            google.charts.load("current", {packages:["corechart"]});
-            google.charts.setOnLoadCallback(drawChart);
-            function drawChart() {
-              var data = google.visualization.arrayToDataTable(gg);
+              google.charts.load("current", {packages:["corechart"]});
+              google.charts.setOnLoadCallback(drawChart);
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable(gg);
 
-        var options = {
-          title: 'Language usage',
-          is3D: true,
-        };
+              var options = {
+                title: 'Language usage',
+                is3D: true,
+              };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-          });
+              var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+              chart.draw(data, options);
+              }
+            });
             
             //repol.push([0, 20]);
 
             
 
           } // end outputPageContent()
+
+
         } // end else statement
 
         
@@ -158,13 +447,11 @@
           callback.call(null, xhr.responseJSON);
         }
       });
-    }
-
-    
+    }    
 
 
 </script>
-<a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">Fork me on GitHub</a>
+<a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">View me on GitHub</a>
 <p id="jj"><a href="https://github.com/AdiChat/Repository-Hunter/wiki/FAQ"><i class="fa fa-question-circle" aria-hidden="true"></i> Need Assistance? View FAQ</a></p>
 </body>
 </html>

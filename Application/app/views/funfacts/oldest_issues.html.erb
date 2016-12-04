@@ -27,7 +27,7 @@
       //e.preventDefault();
       $('#data').html('<div id="loader"><img src="<%= asset_path( 'loader.gif' ) %>" alt="loading..."></div>'); 
       var username = "adichat";//$username.val();
-      var link1   = 'https://api.github.com/search/issues?q=label:bug+state:open&sort=created&order=asc&page=1&per_page=100&access_token=9609a0c5e8aa22152f9c1e251034a8f679be20e7';
+      var link1   = 'https://api.github.com/search/issues?q=label:bug+state:open&sort=created&order=asc&page=1&per_page=100';
 
       requestJSON(link1, function(json) {
         if(json.message === "Not Found" || username == '') {

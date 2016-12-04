@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<!-- to be updated soon -->
+<body>
+
+  <div id="head">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+        <h1>Embed your Contribution Graph <font size="2"> by Repository Hunter</font></h1>
+        <form>  
+          <input type="text" name="username" id="username" placeholder="Enter a GitHub username and check out the contribution graph. Eg: AdiChat">    
+          <button type="submit" id="submit">Get graph and embed code</button>    
+        </form>
+        <div id="data" class="clearfix"></div>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+
+  </div>
+
+
+
+<script type="text/javascript">
+  $(function(){
+    var $username = $('#username');
+    var $data = $('#data');
+
+      $('#submit').on('click', function(e){
+      e.preventDefault();
+      $('#data').html('<div id="loader"><img src="<%= asset_path( 'loader.gif' ) %>" alt="loading..."></div>'); 
+      var username = $username.val();
+      var link1   = 'https://api.github.com/users/'+username+'';
+      var link2  = 'https://api.github.com/users/'+username+'/repos'; 
+      var link3 = 'https://api.github.com/repos/adichat/share/languages';   
+      requestJSON(link1, function(json) {
+        if(json.message === "Not Found" || username == '') {
+          $data.html("<h2>The User seems to be hiding in a nutshell</h2>");
+        }      
+        else {
+          var fullname   = json.name;
+          var username   = json.login;
+          var email = json.email;
+          var profile = json.html_url;
+          var company = json.company;
+          var id = json.id;
+          var face     = json.avatar_url;          
+          var location   = json.location;
+          var follower = json.followers;
+          var following = json.following;
+          var repo     = json.public_repos;
+          var create_time = json.created_at;
+          var update_time = json.updated_at;
+          var hire = json.hireable;
+          var bio = json.bio;
+          var type = json.type;
+          var blog = json.blog;
+          var location = json.location;
+          
+          if( typeof fullname === 'undefined' ) { 
+            fullname = username; 
+          }
+          
+          var info = '<div class="content"><div class="avi"><a href="'+profile+'" target="_blank"><img src="'+face+'" width="80" height="80" alt="'+username+'"></a></div>';
+          info = info + '<h2>'+fullname+' <span class="smallname"> , User : @<a href="'+profile+'" target="_blank">'+username+'</a></span></h2>';         
+
+          info = info + '<p>Embed your contribution graph by placing the following code snippet in your web app:<br><strong><font size="5" color="orange"> <xmp><img src="repository-hunter.herokuapp.com/contribution/'+username+'.svg" alt="Github contribution" /></xmp></font></strong></p>';
+                
+          info = info + '<p>Here is your awesome contribution graph : </p><br><img src="/contribution/adichat.svg" alt="Github contribution" /><br><br>';
+
+          
+
+          info = info + '<p>Download your graph : <a href="/contribution/'+username+'.svg">here</a>';
+
+          $data.html(info);
+        } // end else statement
+
+        
+
+      }); // end requestJSON Ajax call
+
+    
+
+  });
+
+    }); // end click event handler  
+
+    function requestJSON(url, callback) {
+      $.ajax({
+        url: url,
+        complete: function(xhr) {
+          callback.call(null, xhr.responseJSON);
+        }
+      });
+    }
+
+    
+
+
+</script>
+<a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">Fork me on GitHub</a>
+</html>

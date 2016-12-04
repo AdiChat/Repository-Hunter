@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get 'new_issues', to: 'funfacts#new_issues'
   get 'popular_issues', to: 'funfacts#popular_issues'
 
+  # Contribution graph feature
+  get '/contribution', to: 'contributions#home'
+  get "/contribution/:username" => "contributions#generate", format: :svg
 end

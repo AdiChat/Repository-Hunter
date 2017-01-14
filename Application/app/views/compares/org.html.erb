@@ -1,0 +1,110 @@
+
+<style type="text/css">
+table {
+  margin: 0 auto;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  border-collapse: collapse;
+  color: #686461;
+  font-size: 30px;
+}
+caption {
+  padding: 10px;
+  color: white;
+  background: #8FD4C1;
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+  text-align: center;
+}
+
+.head {
+  border-bottom: 3px solid #B9B29F;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+td {
+  padding: 10px;
+  font-size: 30px;
+}
+tr:nth-child(odd) {
+  background: white;
+  font-size: 30px;
+}
+tr:nth-child(even) {
+  background: #E8E6D1;
+  font-size: 30px;
+}
+</style>
+
+<script type="text/javascript">
+function sorti(el) { 
+   var col_sort = el.innerHTML; 
+   var tr = el.parentNode;
+   var table = tr.parentNode;    
+   var td, arrow, col_sort_num;
+   
+    for (var i=0; (td = tr.getElementsByTagName("td").item(i)); i++) {
+    if (td.innerHTML == col_sort) {
+            col_sort_num = i; 
+            if (td.prevsort == "y"){
+                arrow = td.firstChild;
+                el.up = Number(!el.up);
+            }else{
+                td.prevsort = "y";
+                arrow = td.insertBefore(document.createElement("span"),td.firstChild);
+                el.up = 0;
+            }
+            arrow.innerHTML = el.up?"↑ ":"↓ ";
+        }else{
+            if (td.prevsort == "y"){
+                td.prevsort = "n";
+                if (td.firstChild) td.removeChild(td.firstChild);
+            }
+        }
+    }
+     
+     var a = new Array();
+     
+    for(i=1; i < table.rows.length; i++) {
+        a[i-1] = new Array();
+        a[i-1][0]=table.rows[i].getElementsByTagName("td").item(col_sort_num).innerHTML;
+        a[i-1][1]=table.rows[i];
+     }
+     
+     a.sort();
+     if(el.up) a.reverse();  
+     
+     for(i=0; i < a.length; i++)
+     table.appendChild(a[i][1]);
+}
+</script>
+
+        <div class='row container'>
+            <div class='twelve columns'>
+                <div class='row'>
+                    <div class='eight columns centered center' id='title'>
+                        <h3>Find the best coder🏆in an organization</h3>
+                    </div>
+                </div>
+                <form id='users'>
+
+                  <div class='six columns centered'>
+                    <input id ="organization" type='text' name='organization' class="login-input" value='github'/>
+                  </div>
+
+                    <div id="buttoncompare" class='row submit-container'>
+                        <div class='six columns centered'>
+                            <div id='submit' class='center'>Compare</div>
+                        </div>
+                    </div>
+                
+                </form>
+                               
+            </div>
+        </div>
+
+        <a id="forkMe" href="https://github.com/AdiChat/Repository-Hunter">Star me on GitHub</a>
+
+    </body>
+</html>

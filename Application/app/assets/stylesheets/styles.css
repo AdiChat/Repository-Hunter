@@ -1,0 +1,247 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #111;
+  color: #fff;
+}
+.prices {
+  display: flex;
+  margin: 3em auto;
+  align-items: center;
+  justify-content: center;
+}
+.pricingopt {
+  width: 14em;
+  height: 22em;
+  background: #222;
+  border-radius: 1ex;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pricingopt.left {
+  border-radius: 1ex 0 0 1ex;
+  border-right: 0;
+}
+.pricingopt.right {
+  border-radius: 0 1ex 1ex 0;
+  border-left: 0;
+}
+.pricingopt.main {
+  font-size: 1.1em;
+}
+.pricingopt h1, .pricingopt h2 {
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.7em;
+  margin: 0.5em;
+}
+.pricingopt h2 {
+  font-size: 2.3em;
+}
+.pricingopt ul {
+  list-style-type: none;
+  font-size: 1.15em;
+  padding: 0;
+}
+.pricingopt ul li:before {
+  content:"\2713\0020";
+  margin-right: 0.2em;
+}
+.pricingopt button {
+  background: #333;
+  border: 1px solid #111;
+  width: 87%;
+  margin: 2em auto;
+  display: block;
+  padding: 1em;
+  border-radius: 0.5ex;
+  color: #fff;
+  font-size: 0.9em;
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, #submit {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+div {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.container {
+    padding-bottom: 100px;
+}
+.center {
+    text-align: center;
+}
+
+#title {
+    margin-bottom: 80px;
+}
+
+.user input {
+    height: 100px;
+    font-size: 50px;
+    line-height: 80px;
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+}
+
+input:focus {
+    border:none;
+    outline: none;
+}
+.user1 input {
+    color: rgb(50, 92, 175);
+}
+
+.user2 input {
+    color: rgb(186, 0,0);
+}
+
+.vs h2 {
+    line-height: 80px;
+    font-size: 100px;
+    color: white;
+    margin: 0px;
+}
+
+
+.fight {
+    font-color: #ED1C24;
+}
+
+#submit {
+    margin: auto;
+    margin-top: 30px;
+    border: dotted 5px #41403E;
+    padding: 10px 10px;
+    line-height: 30px;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#loading {
+    line-height: 80px;
+    font-size: 60px;
+    color: white;
+    margin: 0px;
+}
+
+.processing-container {
+    margin-top: 30px!important;
+}
+
+.processing-container h5 {
+    color: rgb(186, 0,0);
+    margin: 5px 7px 5px 0;
+    padding: 5px 7px;
+    background: white;
+    float: left;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+#submit div {
+    font-size: 20px;
+    line-height: 20px;
+}
+
+
+.graph {
+    height: 80px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.label {
+    font-size: 30px;
+    margin-bottom: 0px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.graph h3 {
+    font-size: 70px;
+    line-height: 60px;
+}
+.graph_1 {
+    float: left;
+    width: 59%;
+    background: rgb(50, 92, 175);
+}
+
+.graph_1 h3 {
+    float: left;
+    margin-left: 10px;
+}
+
+.graph_2 {
+    float: right;
+    width: 39%;
+    background: rgb(186, 0,0);
+}
+
+.graph_2 h3 {
+    float: right;
+    margin-right: 10px;
+}
+
+.graph span {
+    font-size: 40px;
+    float: left;
+}
+
+
+.score h3 {
+    font-size: 70px;
+    line-height: 60px;
+}
+
+.score h2 {
+    font-size: 100px;
+    line-height: 100px;
+    clear: both;
+}
+
+.twitter {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.twitter h5 {
+    display: inline;
+    position: relative;
+    left: 10px;
+    bottom: 5px;
+}
+.twitter iframe {
+    display: inline;
+}
+
+#retry {
+    margin: auto;
+    padding: 20px 20px;
+    background: rgb(250, 195, 0);
+    line-height: 100px;
+    font-size: 80px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.winner-container {
+    margin-top: -50px!important;
+}
+
+.hn-container {
+    margin-top: 50px!important;
+}
+

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hunter</title>
+  
+        <%= stylesheet_link_tag "styles" %>
+        <%= stylesheet_link_tag "foundation" %>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <%= javascript_include_tag "scraper" %>
+        <%= javascript_include_tag "app" %>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900,900italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,900' rel='stylesheet' type='text/css'>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<style type="text/css">
+#forkMe {
+    top: 3em;
+    right: -6em;
+    color: #fff;
+    display: block;
+    position: fixed;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: .06em;
+    background-color: #A00;
+    padding: 0.5em 5em 0.4em 5em;
+    text-shadow: 0 0 0.75em #444;
+    box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
+    transform: rotate(45deg) scale(0.75,1);
+    font: bold 16px/1.2em Arial, Sans-Serif;
+    -webkit-text-shadow: 0 0 0.75em #444;
+    -webkit-box-shadow: 0 0 0.5em rgba(0,0,0,0.5);
+    -webkit-transform: rotate(45deg) scale(0.75,1);
+    z-index:10;
+}
+#forkMe:before {
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin: -0.3em -5em;
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    border: 2px rgba(255,255,255,0.7) dashed;
+}
+#forkMe:hover {opacity: 0.9;}
+input[type=text]{
+  width: 378px;
+  height: 40px;
+  border: 1px solid #E6E0B1;
+  background: #FAF3D7;
+  box-shadow: inset 0 0px 10px #DEDEB6;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  color: #BBBB88;
+  font-size: 20px;
+}
+.login-input:focus {
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 4px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.3), 0 0 4px 1px rgba(255, 255, 255, 0.6);
+}
+</style>
+
+<style>
+.download {
+  position: absolute;
+  top: calc(50% - 30px);
+  right: calc(50% - 115px);
+  width: 230px;
+  height: 60px;
+  background-image: -webkit-linear-gradient(bottom, rgba(0,0,0,.075), rgba(255,255,255,.045));
+  background-image: linear-gradient(to top, rgba(0,0,0,.075), rgba(255,255,255,.045));
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.09),inset 0 1px 0 rgba(255,255,255,.04), 0 0 1px rgba(0,0,0,.3), 0 0 10px rgba(0,0,0,.1);
+  border-radius: 100px;
+  color: rgba(255,255,255,.9);
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: 5px;
+  overflow: hidden;
+  transition: all .3s cubic-bezier(.67,.13,.1,.81), transform .15s cubic-bezier(.67,.13,.1,.81);
+}
+.download:hover {
+  right: calc(50% - 200px);
+  width: 400px;
+}
+.download:active {
+  transform: translateY(3px);
+}
+.download:before, .download:after {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: all .3s cubic-bezier(.67,.13,.1,.81);
+}
+.download:before {
+  content: 'DOWNLOAD';
+}
+.download:after {
+  content: 'Click to select a platform';
+  top: -60px;
+  opacity: 0;
+}
+.download:hover:after {
+  top: 0px;
+  opacity: 1;
+}
+.download:hover:before {
+  top: 60px;
+  opacity: 0;
+}
+</style>
+
+  <div id="header" style="display: inline-block; text-align:center; padding-left: 550px; "><img src="<%= asset_path( 'a.gif' ) %>" alt="Aditya Dancing"></div>
+
+
+<%= yield %>
+
+</body>
+</html>

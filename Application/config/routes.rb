@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get 'new_issues', to: 'funfacts#new_issues'
   get 'popular_issues', to: 'funfacts#popular_issues'
 
+  # Believe it or not: GitHub
+  get '/believe', to: 'believes#home'
+
   # GitHub Compare
   get '/compare', to: 'compares#home_v1_2'
   get '/org', to: 'compares#org'

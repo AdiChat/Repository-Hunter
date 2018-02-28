@@ -17,13 +17,13 @@ The application provides 6 kinds of services:
 
 * The first feature is 🎉 **Believe it or not**🎉. It explores some of the mysterious corners at GitHub such as:
   * A man who has been committing for over **100 years**.
-  * A **16-year-old issue** on 9-year-old GitHub using 12-year-old Git
+  * A **17-year-old issue** on 10-year-old GitHub using 13-year-old Git
   * A man with **no contribution graph**.
   * A human with a name that extends vertically indefinitely and much more. 
 
 * The second engaging feature is the 🎉 **_Fun Facts_** 🎉. This meets the curiosity of a human to peek into the progress/ work accomplished by other users. Several engaging facts are presented which when observed closely provides deep insights into the mind of our fellow GitHub users. Some instances of engaging features are the list of most commented issues in GitHub, the list of oldest issues in GitHub, some of the most popular developers in GitHub and others. Some deep insights are:
    * The most commented issue has around **16565 comments** but the sad part is that it is a result of automation. 
-   * The oldest unresolved bug is around **_15 years old_**. 
+   * The oldest unresolved bug is around **_16 years old_**. 
    * The most popular user is _Linus Torvalds_ with over **_46700 followers_** whereas he follows none (contrary to the assumption that "_`more users I follow, the more users will follow me`_") . 
    * A seemingly authentic issue has over **1915 comments** which is a discussion💭 over iCloudin, which is a tool to bypass iCloud and another issue addressing the same issue has over **1279 comments**. The strange part is there are only around 130 participants, a small number compared to other issues.
    * An issue over a project that won China 🌍 2014 State Science and Technology Prizes has over **1426 comments** with over **997 participants**. <br>
